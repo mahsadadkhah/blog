@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <div class="jumbotron">
+        <h1 class="text-center">{{ user.username }}</h1>
+        {% if request.user.id == user.id %}
+            <a href="{% url 'home:post_create' %}" class="btn btn-primary">Create new post</a>
+        {% endif %}
+        <br><br>
+        <table class="table table-dark">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Updated</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for post in posts %}
+    <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td><a href="{{ post.get_absolute_url }}"> {{ post.body|truncatewords:8 }} </a></td>
+        <td>{{ post.updated|date:"Y-M" }}</td>
+        <td><a href="{% url 'home:post_delete' post.id %}">delete</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

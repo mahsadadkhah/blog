@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div>
+
+   <h3 style="color:white;"  class="col-md-4">
+        Post Update
+    </h3>
+    </br>
+
+    <form action="" method="post" class="col-md-4" style="color:white; margin:20 px;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="update">
+    </form>
+</div>
+
+{% endblock %}
