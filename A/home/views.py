@@ -9,7 +9,7 @@ from .models import Post
 
 class HomeView(View):
     def get(self, request):
-        posts = Post.objects.all()
+        posts = Post.objects.order_by('-created')
         return render(request, 'home/home.html', {'posts': posts})
 
 
